@@ -20,7 +20,7 @@ from rest_framework.views import APIView
 
 class GetCountUtility(APIView):
     def get_data(self):
-        data = pd.read_excel('C:/Users/91992/PycharmProjects/ExcelTest/JanmotsavVariBooking.xlsx')
+        data = pd.read_excel('JanmotsavVariBooking.xlsx')
         return data
 
     def get_count(self):
