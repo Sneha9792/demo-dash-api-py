@@ -1,5 +1,5 @@
 import json
-
+import os
 import pandas as pd
 # from flask import Flask, render_template,request
 import plotly
@@ -20,7 +20,9 @@ from rest_framework.views import APIView
 
 class GetCountUtility(APIView):
     def get_data(self):
-        data = pd.read_excel('JanmotsavVariBooking.xlsx')
+        APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(APP_ROOT, 'JanmotsavVariBooking.xlsx')
+        data = pd.read_excel(file_path)
         return data
 
     def get_count(self):
