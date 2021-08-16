@@ -87,7 +87,7 @@ class GetUniqueStates(APIView):
         res ={}
         for state in unique_states:
             df_state = df[df['StateName'] == state]
-            res[state] = list(df_state['DistrictName'].unique())
+            res[state] = list(df_state['DistrictName'].unique())    
         # res['Districts'] = unique_districts
         res = json.dumps(res)
         return Response(res)
