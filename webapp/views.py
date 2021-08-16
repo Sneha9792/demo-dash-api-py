@@ -78,8 +78,22 @@ class PlotStateCount(APIView):
         return fig
 
 
+class GetUniqueStates(APIView):
+    def get(self, request):
+        obj = GetCountUtility()
+        df = obj.get_data()
+        # df = self.get_data()
+        unique_states = list(df['StateName'].unique())
+        res ={}
+        for state in unique_states:
+            df_state = df[df['StateName'] == state]
+            res[state] = list(df_state['DistrictName'].unique())
+        # res['Districts'] = unique_districts
+        res = json.dumps(res)
+        return Response(res)
 
-
+    def post(self):
+        pass
 
 class StateCount(APIView):
     def get(self, request):
