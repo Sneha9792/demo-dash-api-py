@@ -123,7 +123,7 @@ class TalukaWiseCount(APIView):
         data = json.loads(request.body)
         # print(data, type(data))
         state_name = data['State']
-        district = data['Distirct']
+        district = data['District']
         obj = PlotStateCount()
         fig = obj.plot_graph_Taluka_Wise(state_name, district)
         #fig = px.pie(self.top10_StateCount, count='pop', names='Statename')
