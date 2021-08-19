@@ -68,8 +68,9 @@ class PlotStateCount(APIView):
     def Pie_Chart(self):
         obj = GetCountUtility()
         top10_StateCount = obj.get_top10_count()
-        fig = px.pie(top10_StateCount, values='count', names='StateName')
-        return fig
+        # print(top10_StateCount)
+        # fig = px.pie(top10_StateCount, values='count', names='StateName')
+        return top10_StateCount
 
     def plot_graph_Taluka_Wise(self, state_name, district):
         obj = GetCountUtility()
@@ -109,13 +110,21 @@ class StateCount(APIView):
 class top10StateCount(APIView):
     def get(self,request):
         obj = PlotStateCount()
-        fig = obj.Pie_Chart()
+        top_10_df = obj.Pie_Chart()
+        labels = list(top_10_df['StateName'])
+        data = list(top_10_df['count'])
         #fig = px.pie(self.top10_StateCount, count='pop', names='Statename')
-        graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        # graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        backgroundColor = ['#0d0887','#46039f','#7201a8', '#9c179e','#bd3786','#d8576b','#ed7953','#fb9f3a','#fdca26','#f0f921']
         new_dict = {}
+        datasets={}
+        datasets['data'] = data
+        datasets['backgroundColor'] = backgroundColor
+        new_dict['labels'] = labels
+        new_dict['datasets'] = datasets
         # print(graphJSON1)
-        graphJSON1 = json.loads(graphJSON1)
-        new_dict['labels'] = graphJSON1['data'][0]['labels']
+        # graphJSON1 = json.loads(graphJSON1)
+        # new_dict['labels'] = graphJSON1['data'][0]['labels']
         # new_dict = json.dumps(new_dict)
         return Response(new_dict)
 
