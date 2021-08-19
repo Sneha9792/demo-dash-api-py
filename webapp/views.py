@@ -112,7 +112,12 @@ class top10StateCount(APIView):
         fig = obj.Pie_Chart()
         #fig = px.pie(self.top10_StateCount, count='pop', names='Statename')
         graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-        return Response(graphJSON1)
+        new_dict = {}
+        # print(graphJSON1)
+        graphJSON1 = json.loads(graphJSON1)
+        new_dict['labels'] = graphJSON1['data'][0]['labels']
+        # new_dict = json.dumps(new_dict)
+        return Response(new_dict)
 
     def post(self):
         pass
