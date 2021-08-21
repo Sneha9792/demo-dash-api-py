@@ -139,7 +139,7 @@ class top10StateCount(APIView):
 class TalukaWiseCount(APIView):
     def post(self,request):
         data = json.loads(request.body)
-        print(data, type(data))
+        # print(data, type(data))
         state_name = data['State']
         district = data['District']
         obj = PlotStateCount()
