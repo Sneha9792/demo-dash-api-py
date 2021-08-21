@@ -1,3 +1,4 @@
+import random
 import json
 import os
 import pandas as pd
@@ -75,8 +76,10 @@ class PlotStateCount(APIView):
     def plot_graph_Taluka_Wise(self, state_name, district):
         obj = GetCountUtility()
         df2 = obj.Taluka_Count(state_name, district)
-        fig = px.bar(data_frame=df2, x='Taluka_Name', y='Talukacount', color="Taluka_Name")
-        return fig
+        # print(df2)
+        #fig = px.bar(data_frame=df2, x='Taluka_Name', y='Talukacount', color="Taluka_Name")
+        #return fig
+        return df2
 
 
 class GetUniqueStates(APIView):
@@ -136,14 +139,29 @@ class top10StateCount(APIView):
 class TalukaWiseCount(APIView):
     def post(self,request):
         data = json.loads(request.body)
-        # print(data, type(data))
+        print(data, type(data))
         state_name = data['State']
         district = data['District']
         obj = PlotStateCount()
-        fig = obj.plot_graph_Taluka_Wise(state_name, district)
+        df2 = obj.plot_graph_Taluka_Wise(state_name, district)
         #fig = px.pie(self.top10_StateCount, count='pop', names='Statename')
-        graphJSON2 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-        return Response(graphJSON2)
+        #graphJSON2 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        backgroundColor = ['#0d0887', '#46039f', '#7201a8', '#9c179e', '#bd3786', '#d8576b', '#ed7953', '#fb9f3a',
+                           '#fdca26', '#f0f921','#0d0887', '#46039f', '#7201a8', '#9c179e', '#bd3786', '#d8576b', '#ed7953', '#fb9f3a',
+                           '#fdca26', '#f0f921']
+        labels = list(df2['Taluka_Name'])
+        data = list(df2['Talukacount'])
+        color_count = len(labels)
+        taluka_colors = random.sample(backgroundColor, color_count)
+        new_dict = {}
+        datasets = {}
+        datasets['data'] = data
+        datasets['backgroundColor'] = taluka_colors
+        new_dict['labels'] = labels
+        new_dict['datasets'] = datasets
+        # print(new_dict)
+        # new_dict = json.dumps(new_dict)
+        return Response(new_dict)
 
     def get(self):
         pass
