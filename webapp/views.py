@@ -90,7 +90,8 @@ class GetUniqueStates(APIView):
             df_state = df[df['StateName'] == state]
             res[state] = list(df_state['DistrictName'].unique())    
         # res['Districts'] = unique_districts
-        res = json.dumps(res)
+        # res = json.dumps(res)
+        
         return Response(res)
 
     def post(self):
