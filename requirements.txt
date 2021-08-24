@@ -7,3 +7,4 @@ pandas
 django-heroku
 plotly
 gunicorn
+django-cors-headers
