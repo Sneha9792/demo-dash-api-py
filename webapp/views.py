@@ -119,7 +119,7 @@ class top10StateCount(APIView):
         data = list(top_10_df['count'])
         #fig = px.pie(self.top10_StateCount, count='pop', names='Statename')
         # graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-        backgroundColor = ['#0d0887','#46039f','#7201a8', '#9c179e','#bd3786','#d8576b','#ed7953','#fb9f3a','#fdca26','#f0f921']
+        backgroundColor = ['#ffff00','#ff0000','#00ff00','#ffa500','#0000ff','#FFE4C4','#f3cfbb','#808080','#ffc0cb','#E6E6FA']
         new_dict = {}
         datasets={}
         datasets['data'] = data
@@ -146,9 +146,7 @@ class TalukaWiseCount(APIView):
         df2 = obj.plot_graph_Taluka_Wise(state_name, district)
         #fig = px.pie(self.top10_StateCount, count='pop', names='Statename')
         #graphJSON2 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-        backgroundColor = ['#0d0887', '#46039f', '#7201a8', '#9c179e', '#bd3786', '#d8576b', '#ed7953', '#fb9f3a',
-                           '#fdca26', '#f0f921','#0d0887', '#46039f', '#7201a8', '#9c179e', '#bd3786', '#d8576b', '#ed7953', '#fb9f3a',
-                           '#fdca26', '#f0f921']
+        backgroundColor = ['#ffff00','#ff0000','#00ff00','#ffa500','#0000ff','#FFE4C4','#f3cfbb','#808080','#ffc0cb','#E6E6FA']
         labels = list(df2['Taluka_Name'])
         data = list(df2['Talukacount'])
         color_count = len(labels)
