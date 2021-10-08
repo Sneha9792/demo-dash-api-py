@@ -7,8 +7,7 @@ import plotly
 import plotly.express as px
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-
+from .models import new_table
 # class employeeList(APIView):
 #     def get(self, request):
 #         emp = employees.object.all()  # fetch all the data from model
@@ -18,7 +17,12 @@ from rest_framework.views import APIView
 #     def post(self):
 #         pass
 
+qs= new_table.objects.all()
+print('data set',qs)
+print('ok')
 
+pddata = pd.DataFrame(qs)
+print('dataf',pddata)
 class GetCountUtility(APIView):
     def get_data(self):
         APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -126,6 +130,7 @@ class top10StateCount(APIView):
         datasets['backgroundColor'] = backgroundColor
         new_dict['labels'] = labels
         new_dict['datasets'] = datasets
+        
         # print(graphJSON1)
         # graphJSON1 = json.loads(graphJSON1)
         # new_dict['labels'] = graphJSON1['data'][0]['labels']

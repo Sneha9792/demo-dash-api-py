@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import employees
+from .models import new_table
 
-class employeesSerializer(serializers.ModelSerializer):
+class new_tableSerializer(serializers.ModelSerializer):
     class Meta:
-        model=employees
+        model=new_table
         #fields=('first_name','last_name')
-        fields='__all__'
+        fields='idnew_table'
