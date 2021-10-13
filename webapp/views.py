@@ -7,6 +7,7 @@ import plotly
 import plotly.express as px
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from .models import JanmoUtsavVari
 
 
 # class employeeList(APIView):
@@ -17,6 +18,23 @@ from rest_framework.views import APIView
 #
 #     def post(self):
 #         pass
+qs= JanmoUtsavVari.objects.all()
+# qsf = JanmoUtsavVari.fullname
+#print('data set',qs)
+print('ok')
+
+pddata = pd.DataFrame(qs)
+
+
+
+
+
+
+# csvpd= pd.to_csv(qs, index=False, sep = ';')
+# print(csvpd)
+#df_countprint = pddata.groupby('StateName').count().reset_index()
+
+print('dataf',qs)
 
 
 class GetCountUtility(APIView):
