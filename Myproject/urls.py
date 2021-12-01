@@ -25,6 +25,8 @@ urlpatterns = [
     path('GetStateCount/', views.StateCount.as_view()),
     path('Gettop10StateCount/', views.top10StateCount.as_view()),
     path('TalukaCount/', views.TalukaWiseCount.as_view()),
-    path('GetStateDistrictNames/', views.GetUniqueStates.as_view())
+    path('GetStateDistrictNames/', views.GetUniqueStates.as_view()),
+    path('GetSubscriber_Top10StateCount/', views.subscriber_top10StateCount.as_view()),
+    path('GetSubscriber_TalukaWiseCount/', views.subscriber_TalukaWiseCount.as_view())
 
 ]
